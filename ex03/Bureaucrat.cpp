@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat():name("Unkown"){
     grade = 150;
@@ -34,11 +34,11 @@ const char* Bureaucrat::GradeTooLowException::what()const _GLIBCXX_NOTHROW{
     return "grade too low";
 }
 
-int Bureaucrat::getGrade(){
+int Bureaucrat::getGrade() const{
     return grade;
 }
 
-std::string Bureaucrat::getName (){
+std::string Bureaucrat::getName () const{
     return name;
 }
 
@@ -61,9 +61,14 @@ std::ostream& operator<<(std::ostream& os, Bureaucrat& other){
     return os;
 }
 
-void Bureaucrat::signForm(Form& Form){
-    if (Form.getSign() == true)
-        std::cout << getName() << " signed " << Form.getName() << std::endl;
+void Bureaucrat::signForm(AForm& AForm){
+    if (AForm.getSign() == true)
+        std::cout << getName() << " signed " << AForm.getName() << std::endl;
     else
-        std::cout << getName() << " couldn't sign " << Form.getName() << "because the bureaucrat has a low grade!!" << std::endl; 
+        std::cout << getName() << " couldn't sign " << AForm.getName() << "because the bureaucrat has a low grade!!" << std::endl; 
+}
+
+void Bureaucrat::executeForm(AForm const & form) const
+{
+    form.execute(*this);
 }

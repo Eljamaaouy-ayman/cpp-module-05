@@ -14,8 +14,7 @@ Form& Form::operator=(const Form& other){
 
 Form::~Form(){}
 
-Form::Form(std::string name, int sign_grade, int exec_grade):sign_gr(sign_grade), exec_gr(exec_grade){
-    name = name;
+Form::Form(std::string name, int sign_grade, int exec_grade):name(name), sign_gr(sign_grade), exec_gr(exec_grade){
     sign = false;
     if(sign_gr > 150 || exec_gr > 150)
         throw Form::GradeTooLowException();
@@ -55,5 +54,6 @@ void Form::beSigned(Bureaucrat& other){
 }
 
 std::ostream& operator<<(std::ostream& os, Form& other){
-    os << "form" << other.getName() << "sign" << other.getSign() << "grade sign" << other.getSign_gr() << "execute grade" << other.getExec_gr() << std::endl;
+    os << "form " << other.getName() << " sign " << other.getSign() << " grade sign " << other.getSign_gr() << " execute grade " << other.getExec_gr();
+    return os;
 }

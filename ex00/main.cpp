@@ -14,7 +14,4 @@ int main()
     {
         std::cerr << "thrown " << e.what() << '\n';
     }
-    
-
-
 }

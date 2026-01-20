@@ -1,8 +1,8 @@
 #pragma once
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -25,11 +25,12 @@ class Bureaucrat
         {
             const char* what() const _GLIBCXX_NOTHROW;
         };
-        int getGrade();
-        std::string getName();
+        int getGrade() const;
+        std::string getName() const;
         void incrementGrade();
         void decrementGrade();
-        void signForm(Form& Form);
+        void signForm(AForm& AForm);
+        void executeForm(AForm const & form) const;
 };
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat& other);
